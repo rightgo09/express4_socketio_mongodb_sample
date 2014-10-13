@@ -6,7 +6,23 @@ block content
   script(type='text/javascript').
     $(document).ready(function(){
       var socket = io.connect("http://"+location.host+"/");
+      $("#saveButton").click(function(){
+        socket.emit("save", {
+          userId: $("#userId").val(),
+          age: $("#age").val(),
+        });
+      });
     });
 
   h1= title
   p Welcome to #{title}
+  form
+    div
+      label ID
+      input(type="text", id="userId")
+      br
+      label 年齢
+      input(type="text", id="age", style="width:4em")
+      br
+      input(type="button", id="saveButton", value="保存")
+
